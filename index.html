@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JooxBotZ V9 Gen Beta</title>
+    <style>
+        body {
+            text-align: center;
+            background-color: white;
+            font-family: Arial, sans-serif;
+        }
+        .blinking-text {
+            font-size: 20px;
+            font-weight: bold;
+            animation: blink 1s infinite alternate;
+        }
+        @keyframes blink {
+            0% { color: red; }
+            25% { color: blue; }
+            50% { color: green; }
+            75% { color: orange; }
+            100% { color: purple; }
+        }
+        img {
+            width: 200px;
+            height: auto;
+            margin: 10px;
+        }
+        .button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            font-size: 14px;
+            cursor: pointer;
+            border-radius: 4px;
+            margin: 5px;
+        }
+        .button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="blinking-text">User and key script JooxBotZ V9 Gen Beta</div>
+
+    <img src="https://files.catbox.moe/jyyjt8.jpg" alt="Donasi Image">
+    <p>Donasi for Developer</p>
+    <button class="button" onclick="window.location.href='https://files.catbox.moe/jyyjt8.jpg'">Donasi</button>
+
+    <p>User script</p>
+    <button class="button" onclick="copyText('jooxbotzdevnew2025')">Salin</button>
+
+    <p>Password script</p>
+    <button class="button" onclick="copyText('joodevcreator2025')">Salin</button>
+
+    <script>
+        function copyText(text) {
+            const tempInput = document.createElement("input");
+            document.body.appendChild(tempInput);
+            tempInput.value = text;
+            tempInput.select();
+            document.execCommand("copy");
+            document.body.removeChild(tempInput);
+            alert("User telah disalin: " + text);
+        }
+    </script>
+
+</body>
+</html>
