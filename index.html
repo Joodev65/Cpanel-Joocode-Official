@@ -100,6 +100,17 @@
       transform: translateY(-1px);
     }
 
+    .avatar {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #00f0ff;
+  margin: 0 auto 20px auto;
+  display: block;
+  box-shadow: 0 0 10px rgba(0,240,255,0.2);
+    }
+    
     .error {
       text-align: center;
       color: #ff4d4d;
@@ -122,13 +133,14 @@
 </head>
 <body>
   <div class="card">
-    <h2>Login ke Joocode Panel</h2>
-    <input type="text" id="name" placeholder="Nama Lengkap">
-    <input type="password" id="password" placeholder="Password">
-    <input type="text" id="ip" placeholder="IP Address">
-    <button onclick="login()">Masuk</button>
-    <div id="error" class="error"></div>
-    <div class="footer">© 2025 Joocode Official</div>
+  <img src="https://img1.pixhost.to/images/6755/615340015_imgtmp.jpg" class="avatar" alt="avatar">
+  <h2>Login ke Joocode Panel</h2>
+  <input type="text" id="name" placeholder="Nama Lengkap">
+  <input type="password" id="password" placeholder="Password">
+  <input type="text" id="ip" placeholder="IP Address">
+  <button onclick="login()">Masuk</button>
+  <div id="error" class="error"></div>
+  <div class="footer">© 2025 Joocode Official</div>
   </div>
 
   <script>
