@@ -195,11 +195,12 @@
   }
 
   if (role === "seller") {
-    document.getElementById("createAdmin").style.display = "none";
-    document.getElementById("listAdmin").style.display = "none";
-    document.querySelector(".tab-btn:nth-child(3)").style.display = "none";
-    document.querySelector(".tab-btn:nth-child(4)").style.display = "none";
-  }
+  // Sembunyikan fitur Create Admin & List Admin dari seller
+  document.getElementById("createAdmin").style.display = "none";
+  document.getElementById("listAdmin").style.display = "none";
+  document.getElementById("btnAdmin1").style.display = "none";
+  document.getElementById("btnAdmin2").style.display = "none";
+}
 
   // ====== Fetch Panel ======
   async function fetchServers() {
@@ -335,4 +336,4 @@
       resultBox.innerHTML = "✘ Gagal membuat admin.";
     }
   });
-</script>
+  </script>
