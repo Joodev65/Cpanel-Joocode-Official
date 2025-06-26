@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,51 +6,333 @@
   <title>Cpanel Joocode Official</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
   <style>
-    /* Simplified styles to focus on layout */
-    body { background: #121212; color: #fff; font-family: 'Poppins', sans-serif; }
-    .tab-btn { padding: 10px; background: #00f0ff; border: none; margin: 5px; border-radius: 5px; cursor: pointer; }
-    .section { display: none; padding: 20px; background: #1e1e1e; margin-top: 10px; border-radius: 10px; }
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+    body { background: #121212; color: #fff; overflow-x: hidden; }
+    header { display: flex; align-items: center; padding: 20px; }
+    .logo { display: flex; align-items: center; gap: 15px; }
+    .logo img { width: 60px; height: 60px; border-radius: 50%; border: 2px solid #00f0ff; }
+    .logo h1 {
+      font-size: 24px;
+      background: linear-gradient(to right, #00f0ff, #ff00f0);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .main { display: flex; justify-content: space-between; padding: 40px; flex-wrap: wrap; }
+    .left { flex: 1; max-width: 500px; }
+    .left h2 { font-size: 32px; animation: fadeIn 1s ease-in-out; }
+    .left p { margin-top: 10px; font-size: 18px; color: #ccc; animation: fadeIn 2s ease-in-out; }
+    .typing { margin-top: 15px; color: #00f0ff; font-weight: bold; height: 30px; }
+    .right {
+      position: relative; flex: 1; max-width: 400px;
+      display: flex; justify-content: center; align-items: center;
+    }
+    .right .layer {
+      position: absolute; width: 90%; height: 90%;
+      border: 2px solid #00f0ff; border-radius: 15px;
+      transform: rotate(5deg); z-index: 0;
+    }
+    .right img {
+      width: 100%; max-width: 320px; border-radius: 15px; z-index: 1;
+      box-shadow: 0 0 20px rgba(0, 240, 255, 0.2);
+    }
+    .tabs {
+      display: flex; flex-direction: column;
+      align-items: flex-start; margin: 30px 40px;
+    }
+    .tabs h3 { font-size: 16px; color: #ccc; margin-bottom: 8px; }
+    .tab-btn {
+      padding: 10px 24px; border: none;
+      border-radius: 8px;
+      background: linear-gradient(135deg, #00f0ff, #8f00ff);
+      color: white; cursor: pointer;
+      font-weight: 600; font-size: 15px;
+      width: 240px; margin-bottom: 10px;
+    }
+    .tab-btn:hover { opacity: 0.9; }
+    .section {
+      display: none;
+      max-width: 700px; margin: auto;
+      background: #1e1e1e; padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 0 15px rgba(0, 240, 255, 0.2);
+    }
     .section.active { display: block; }
+    input, select, button {
+      width: 100%; padding: 12px; margin-bottom: 15px;
+      border: none; border-radius: 10px; font-size: 14px;
+    }
+    input, select { background: #2a2a2a; color: #fff; }
+    button[type="submit"] {
+      background: linear-gradient(135deg, #00f0ff, #8f00ff);
+      color: white; font-weight: bold; cursor: pointer;
+    }
+    .server-item {
+      display: flex; justify-content: space-between;
+      align-items: center; padding: 8px 12px; margin: 10px 0;
+      background: #1c1c1c; border-radius: 10px; font-size: 14px;
+    }
+    .delete-btn {
+      background: #ff0040; color: white;
+      width: 24px; height: 24px; font-size: 16px;
+      border: none; border-radius: 6px;
+      cursor: pointer; display: flex; align-items: center; justify-content: center;
+    }
   </style>
 </head>
 <body>
-  <header><h1>Joocode Panel</h1></header>
+  <header>
+    <div class="logo">
+      <img src="https://img1.pixhost.to/images/6755/615340015_imgtmp.jpg" alt="logo">
+      <h1>Joocode Official</h1>
+    </div>
+  </header>
+
+  <section class="main">
+    <div class="left">
+      <h2>Joocode Official</h2>
+      <p class="typing" id="typing"></p>
+      <p>Digital Developer, Digital Marketplace, IT Engineering</p>
+    </div>
+    <div class="right">
+      <div class="layer"></div>
+      <img src="https://img1.pixhost.to/images/6751/615257498_imgtmp.jpg" alt="profile" />
+    </div>
+  </section>
+
   <div class="tabs">
+    <h3>Select Category</h3>
     <button class="tab-btn" onclick="showSection('create')">Create Panel</button>
     <button class="tab-btn" onclick="showSection('list')">List Panel</button>
-    <button class="tab-btn" onclick="showSection('createAdmin')">Create Admin</button>
-    <button class="tab-btn" onclick="showSection('listAdmin')">List Admin</button>
+    <button class="tab-btn" id="btnAdmin1" onclick="showSection('createAdmin')">Create Admin</button>
+    <button class="tab-btn" id="btnAdmin2" onclick="showSection('listAdmin')">List Admin</button>
   </div>
+  <section id="create" class="section active">
+    <h3>✧ Buat Panel Sekarang</h3>
+    <form id="panelForm">
+      <select id="size">
+        <option value="1gb">1GB</option>
+        <option value="2gb">2GB</option>
+        <option value="3gb">3GB</option>
+        <option value="4gb">4GB</option>
+        <option value="5gb">5GB</option>
+        <option value="6gb">6GB</option>
+        <option value="7gb">7GB</option>
+        <option value="8gb">8GB</option>
+        <option value="9gb">9GB</option>
+        <option value="10gb">10GB</option>
+        <option value="unlimited">Unlimited</option>
+      </select>
+      <input type="text" id="username" placeholder="Username" required />
+      <input type="email" id="email" placeholder="Email" required />
+      <button type="submit">Buat Sekarang</button>
+    </form>
+    <div id="result">Result</div>
+  </section>
 
-  <div id="create" class="section">Form Create Panel</div>
-  <div id="list" class="section">Panel List</div>
-  <div id="createAdmin" class="section">Form Create Admin</div>
-  <div id="listAdmin" class="section">Admin List</div>
+  <section id="createAdmin" class="section">
+    <h3>✧ Buat Admin Panel</h3>
+    <form id="adminForm">
+      <input type="text" id="adminUsername" placeholder="Username Admin" required />
+      <input type="email" id="adminEmail" placeholder="Email Admin" required />
+      <button type="submit">Buat Admin</button>
+    </form>
+    <div id="adminResult">Result</div>
+  </section>
 
+  <section id="list" class="section">
+    <h3>✦ Daftar Server Aktif</h3>
+    <div id="serverList">Memuat...</div>
+  </section>
+
+  <section id="listAdmin" class="section">
+    <h3>✦ Daftar Admin Panel</h3>
+    <div id="adminList">Memuat...</div>
+  </section>
   <script>
-    function showSection(id) {
-      document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
-      document.getElementById(id).classList.add('active');
+  const typingElement = document.getElementById("typing");
+  const texts = ["Auto Panel Creator", "Pterodactyl API", "Joocode Developer", "Server Management"];
+  let textIndex = 0, charIndex = 0;
+
+  function typeText() {
+    if (charIndex < texts[textIndex].length) {
+      typingElement.textContent += texts[textIndex].charAt(charIndex);
+      charIndex++;
+      setTimeout(typeText, 100);
+    } else {
+      setTimeout(eraseText, 2000);
     }
+  }
 
-    // Role & Access Control
-    window.onload = function() {
-      const akses = sessionStorage.getItem("akses");
-      const role = sessionStorage.getItem("role");
-
-      if (akses !== "true") {
-        alert("Akses ditolak.");
-        window.location.href = "index.html";
-        return;
-      }
-
-      if (role === "seller") {
-        document.getElementById("createAdmin").style.display = "none";
-        document.getElementById("listAdmin").style.display = "none";
-        document.querySelectorAll(".tab-btn")[2].style.display = "none";
-        document.querySelectorAll(".tab-btn")[3].style.display = "none";
-      }
+  function eraseText() {
+    if (charIndex > 0) {
+      typingElement.textContent = texts[textIndex].substring(0, charIndex - 1);
+      charIndex--;
+      setTimeout(eraseText, 50);
+    } else {
+      textIndex = (textIndex + 1) % texts.length;
+      setTimeout(typeText, 500);
     }
-  </script>
-</body>
-</html>
+  }
+
+  typeText();
+
+  function showSection(id) {
+    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+  }
+
+  // ====== Aktifkan tombol tab ======
+  document.querySelector(".tab-btn:nth-child(2)").addEventListener("click", fetchServers); // List Panel
+  document.querySelector(".tab-btn:nth-child(4)").addEventListener("click", fetchAdmins);  // List Admin
+
+  // Proteksi Akses
+  const akses = sessionStorage.getItem("akses");
+  const role = sessionStorage.getItem("role");
+
+  if (akses !== "true") {
+    alert("Akses ditolak! Silakan login dulu.");
+    window.location.href = "index.html";
+  }
+
+  if (role === "seller") {
+    document.getElementById("createAdmin").style.display = "none";
+    document.getElementById("listAdmin").style.display = "none";
+    document.querySelector(".tab-btn:nth-child(3)").style.display = "none";
+    document.querySelector(".tab-btn:nth-child(4)").style.display = "none";
+  }
+
+  // ====== Fetch Panel ======
+  async function fetchServers() {
+    const container = document.getElementById("serverList");
+    container.innerHTML = "Memuat daftar server...";
+    try {
+      const res = await fetch("https://solid-hammerhead-petalite.glitch.me/servers");
+      const servers = await res.json();
+      if (!Array.isArray(servers)) return container.innerHTML = "✘ Gagal mengambil data.";
+      container.innerHTML = servers.map(srv => `
+        <div class="server-item">
+          <span class="server-name">${srv.attributes.name || 'Tanpa Nama'}</span>
+          <button class="delete-btn" onclick="deleteServer('${srv.attributes.id}')">×</button>
+        </div>
+      `).join('');
+    } catch {
+      container.innerHTML = "✘ Error mengambil server.";
+    }
+  }
+
+  async function deleteServer(id) {
+    if (!confirm("Yakin hapus server ini?")) return;
+    try {
+      const res = await fetch(`https://solid-hammerhead-petalite.glitch.me/server/${id}`, {
+        method: "DELETE"
+      });
+      const data = await res.json();
+      if (data.success) fetchServers();
+      else alert("✘ Gagal hapus server");
+    } catch {
+      alert("✘ Error saat hapus server.");
+    }
+  }
+
+  // ====== Fetch Admin ======
+  async function fetchAdmins() {
+    const container = document.getElementById("adminList");
+    container.innerHTML = "Memuat daftar admin...";
+    try {
+      const res = await fetch("https://solid-hammerhead-petalite.glitch.me/admins");
+      const admins = await res.json();
+      if (!Array.isArray(admins)) return container.innerHTML = "✘ Gagal mengambil data.";
+
+      const filtered = admins.filter(a => a.username && a.username.trim() !== "");
+      if (filtered.length === 0) return container.innerHTML = "Tidak ada admin ditemukan.";
+
+      container.innerHTML = filtered.map(admin => `
+        <div class="server-item">
+          <span class="server-name">${admin.username}</span>
+          <button class="delete-btn" onclick="deleteAdmin('${admin.id}')">×</button>
+        </div>
+      `).join('');
+    } catch {
+      container.innerHTML = "✘ Error mengambil admin.";
+    }
+  }
+
+  async function deleteAdmin(id) {
+    if (!confirm("Yakin hapus admin ini?")) return;
+    try {
+      const res = await fetch(`https://solid-hammerhead-petalite.glitch.me/admin/${id}`, {
+        method: "DELETE"
+      });
+      const data = await res.json();
+      if (data.success) fetchAdmins();
+      else alert("✘ Gagal hapus admin");
+    } catch {
+      alert("✘ Error saat hapus admin.");
+    }
+  }
+
+  // ====== Submit Create Panel ======
+  document.getElementById("panelForm").addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const username = document.getElementById("username").value.toLowerCase();
+    const email = document.getElementById("email").value.toLowerCase();
+    const size = document.getElementById("size").value;
+    const resultBox = document.getElementById("result");
+
+    let ram = {
+      "1gb": 1024, "2gb": 2048, "3gb": 3072, "4gb": 4096,
+      "5gb": 5120, "6gb": 6144, "7gb": 7168, "8gb": 8192,
+      "9gb": 9216, "10gb": 10240, "unlimited": 0
+    }[size] || 1024;
+
+    resultBox.innerHTML = "Membuat panel...";
+    try {
+      const res = await fetch("https://solid-hammerhead-petalite.glitch.me/create", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ username, email, ram })
+      });
+      const data = await res.json();
+      if (data.error) return resultBox.innerHTML = "✘ Gagal: " + data.error;
+      resultBox.innerHTML = `
+        <div>
+          <strong>Username:</strong> ${data.username}<br>
+          <strong>Password:</strong> ${data.password}<br>
+          <strong>Email:</strong> ${data.email}<br>
+          <strong>Panel URL:</strong> <a href="${data.panel_url}" target="_blank">${data.panel_url}</a><br>
+          <strong>User ID:</strong> ${data.user_id}
+        </div>`;
+    } catch {
+      resultBox.innerHTML = "✘ Gagal membuat panel.";
+    }
+  });
+
+  // ====== Submit Create Admin ======
+  document.getElementById("adminForm").addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const username = document.getElementById("adminUsername").value.toLowerCase();
+    const email = document.getElementById("adminEmail").value.toLowerCase();
+    const resultBox = document.getElementById("adminResult");
+
+    resultBox.innerHTML = "Membuat admin...";
+    try {
+      const res = await fetch("https://solid-hammerhead-petalite.glitch.me/create-admin", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ username, email })
+      });
+      const data = await res.json();
+      if (data.error) return resultBox.innerHTML = "✘ Gagal: " + data.error;
+      resultBox.innerHTML = `
+        <div>
+          <strong>Username:</strong> ${data.username}<br>
+          <strong>Password:</strong> ${data.password}<br>
+          <strong>Email:</strong> ${data.email}<br>
+          <strong>User ID:</strong> ${data.user_id}<br>
+          <strong>Panel URL:</strong> <a href="${data.panel_url}" target="_blank">${data.panel_url}</a>
+        </div>`;
+    } catch {
+      resultBox.innerHTML = "✘ Gagal membuat admin.";
+    }
+  });
+</script>
