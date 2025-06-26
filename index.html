@@ -343,15 +343,13 @@
       const data = await res.json();
       if (data.error) return resultBox.innerHTML = "✘ Gagal: " + data.error;
       resultBox.innerHTML = `
-<pre>
-╭────────────── 𝙋𝘼𝙉𝙀𝙇 𝘾𝙍𝙀𝘼𝙏𝙀𝘿 ──────────────╮
-│ Domain     : <a href="${data.panel_url}" target="_blank">${data.panel_url}</a>
-│ Username   : ${data.username}
-│ Password   : ${data.password}
-│ Email      : ${data.email}
-│ Server ID  : ${data.server_id}
-╰────────────────────────────────────────╯
-</pre>
+  <div>
+    <strong>Username:</strong> ${data.username}<br>
+    <strong>Password:</strong> ${data.password}<br>
+    <strong>Email:</strong> ${data.email}<br>
+    <strong>Panel URL:</strong> <a href="${data.panel_url}" target="_blank">${data.panel_url}</a><br>
+    <strong>User ID:</strong> ${data.user_id}
+  </div>
 `;
     } catch {
       resultBox.innerHTML = "✘ Gagal membuat panel.";
@@ -375,15 +373,13 @@
       const data = await res.json();
       if (data.error) return resultBox.innerHTML = "✘ Gagal: " + data.error;
       resultBox.innerHTML = `
-<pre>
-╭────────────── 𝘼𝘿𝙈𝙄𝙉 𝘾𝙍𝙀𝘼𝙏𝙀𝘿 ──────────────╮
-│ Username   : ${data.username}
-│ Password   : ${data.password}
-│ Email      : ${data.email}
-│ Panel URL  : ${data.panel_url}
-│ User ID    : ${data.user_id}
-╰────────────────────────────────────────╯
-</pre>
+  <div>
+    <strong>Username:</strong> ${data.username}<br>
+    <strong>Password:</strong> ${data.password}<br>
+    <strong>Email:</strong> ${data.email}<br>
+    <strong>User ID:</strong> ${data.user_id}<br>
+    <strong>Panel URL:</strong> <a href="${data.panel_url}" target="_blank">${data.panel_url}</a>
+  </div>
 `;
     } catch {
       resultBox.innerHTML = "✘ Gagal membuat admin.";
