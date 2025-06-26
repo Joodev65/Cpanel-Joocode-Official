@@ -19,7 +19,7 @@ body {
   overflow-x: hidden;
 }
 
-/* Header */
+/* Header & Logo */
 header {
   display: flex;
   align-items: center;
@@ -46,7 +46,7 @@ header {
   -webkit-text-fill-color: transparent;
 }
 
-/* Main Hero */
+/* Intro Section */
 .main {
   display: flex;
   justify-content: space-between;
@@ -78,13 +78,13 @@ header {
   height: 30px;
 }
 
-/* FOTO DENGAN LAYER */
+/* Right Section (Foto + Layer) */
 .right {
   position: relative;
   flex: 1;
   max-width: 400px;
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
   align-items: center;
 }
 
@@ -104,24 +104,23 @@ header {
   border-radius: 15px;
   z-index: 1;
   box-shadow: 0 0 20px rgba(0, 240, 255, 0.2);
-  object-fit: cover;
 }
 
-/* Dashboard Container */
+/* Sidebar + Content Container */
 .dashboard-container {
   display: flex;
   flex-wrap: wrap;
   padding: 0 40px;
   gap: 40px;
-  margin-top: 50px;
+  margin-top: 30px;
 }
 
-/* Sidebar */
+/* Sidebar Tabs */
 .tabs {
   flex: 0 0 240px;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: stretch;
   background: #1a1a1a;
   padding: 20px;
   border-radius: 15px;
@@ -155,34 +154,27 @@ header {
   opacity: 0.9;
 }
 
-/* Konten Utama */
+/* Content Section */
 .dashboard-content {
   flex: 1;
   min-width: 300px;
   max-width: 700px;
 }
 
-/* Section */
+/* Form + Section Style */
 .section {
   display: none;
   background: #1e1e1e;
   padding: 30px;
   border-radius: 15px;
   box-shadow: 0 0 15px rgba(0, 240, 255, 0.2);
+  width: 100%;
+  max-width: 240px;
+  margin: 0 auto;
 }
 
 .section.active {
   display: block;
-}
-
-.section h3 {
-  margin-bottom: 20px;
-}
-
-/* Form */
-.form-wrapper {
-  display: flex;
-  justify-content: center;
 }
 
 .section form {
@@ -191,6 +183,7 @@ header {
   gap: 12px;
   max-width: 240px;
   width: 100%;
+  margin-top: 20px;
 }
 
 input, select, button {
@@ -213,7 +206,16 @@ button[type="submit"] {
   cursor: pointer;
 }
 
-/* List Item */
+/* Result Text */
+#result, #adminResult {
+  max-width: 240px;
+  margin: 10px auto;
+  font-size: 13px;
+  color: #ccc;
+  text-align: left;
+}
+
+/* List Panel & Admin */
 .server-item {
   display: flex;
   justify-content: space-between;
@@ -239,30 +241,49 @@ button[type="submit"] {
   justify-content: center;
 }
 
-/* Responsive (HP) */
-@media screen and (max-width: 768px) {
+/* 📱 Responsiveness (HP Android) */
+@media screen and (max-width: 600px) {
   .main {
     flex-direction: column;
     align-items: center;
     text-align: center;
+    padding: 20px;
   }
 
   .right {
     justify-content: center;
-    margin-top: 30px;
+    margin-top: 20px;
+  }
+
+  .right img {
+    max-width: 240px;
+  }
+
+  .right .layer {
+    display: none;
   }
 
   .dashboard-container {
     flex-direction: column;
-    padding: 0 20px;
+    align-items: center;
+    padding: 20px;
+    gap: 30px;
   }
 
-  .tabs {
+  .tabs,
+  .section,
+  .dashboard-content {
+    max-width: 100%;
     width: 100%;
   }
 
-  .section form {
-    max-width: 100%;
+  .section,
+  .section form,
+  #result,
+  #adminResult {
+    max-width: 240px;
+    width: 100%;
+    margin: 0 auto;
   }
 }
   </style>
