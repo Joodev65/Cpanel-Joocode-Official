@@ -517,7 +517,7 @@ document.getElementById("panelForm").addEventListener("submit", async (e) => {
   const size = document.getElementById("size").value.trim().toLowerCase();
   const resultBox = document.getElementById("result");
 
-  const ram = ramValues[size] ?? 1024;
+  const ram = ramMap[size] ?? 1024;
 
   resultBox.innerHTML = "Membuat panel...";
   try {
