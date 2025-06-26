@@ -106,7 +106,7 @@
     <button class="tab-btn" id="btnAdmin1" onclick="showSection('createAdmin')">Create Admin</button>
     <button class="tab-btn" id="btnAdmin2" onclick="showSection('listAdmin')">List Admin</button>
   </div>
-  <section id="create" class="section active">
+  <section id="create" class="section">
     <h3>✧ Buat Panel Sekarang</h3>
     <form id="panelForm">
       <select id="size">
@@ -177,9 +177,10 @@
   typeText();
 
   function showSection(id) {
-    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
-    document.getElementById(id).classList.add('active');
-  }
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  const section = document.getElementById(id);
+  if (section) section.classList.add('active');
+}
 
   // ====== Aktifkan tombol tab ======
   document.querySelector(".tab-btn:nth-child(2)").addEventListener("click", fetchServers); // List Panel
