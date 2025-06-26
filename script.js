@@ -1,6 +1,8 @@
+
 // Typing animation
 const texts = ["Auto Panel Creator", "Pterodactyl API", "Joocode Developer", "Server Management"];
-let textIndex = 0, charIndex = 0;
+let textIndex = 0;
+let charIndex = 0;
 const typingElement = document.getElementById("typing");
 
 function typeText() {
@@ -12,6 +14,7 @@ function typeText() {
     setTimeout(eraseText, 2000);
   }
 }
+
 function eraseText() {
   if (charIndex > 0) {
     typingElement.textContent = texts[textIndex].substring(0, charIndex - 1);
@@ -22,23 +25,20 @@ function eraseText() {
     setTimeout(typeText, 500);
   }
 }
+
+// Start typing animation
 typeText();
 
-// Show Sections
-function showSection(id) {
-  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
-}
-
-// Create Panel
 document.getElementById("panelForm").addEventListener("submit", async (e) => {
   e.preventDefault();
+
   const username = document.getElementById("username").value.toLowerCase();
   const email = document.getElementById("email").value.toLowerCase();
   const size = document.getElementById("size").value;
   const resultBox = document.getElementById("result");
 
-  let ram = 1024;
+  // Convert size ke RAM dalam MB
+  let ram = 1024; // default 1GB
   if (size === "2gb") ram = 2048;
   else if (size === "3gb") ram = 3072;
   else if (size === "4gb") ram = 4096;
@@ -48,24 +48,39 @@ document.getElementById("panelForm").addEventListener("submit", async (e) => {
   else if (size === "8gb") ram = 8192;
   else if (size === "9gb") ram = 9216;
   else if (size === "10gb") ram = 10240;
-  else if (size === "unlimited") ram = 0;
+  else if (size === "unlimited") ram = 0; // unlimited
 
   resultBox.innerHTML = "⏳ Membuat panel...";
+
   try {
+    // Gunakan URL relatif untuk menggunakan domain yang sama
     const res = await fetch("https://solid-hammerhead-petalite.glitch.me/create", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ username, email, ram })
     });
 
+    // Check if response is JSON
+    const contentType = res.headers.get('content-type');
+    if (!contentType || !contentType.includes('application/json')) {
+      const text = await res.text();
+      resultBox.innerHTML = "❌ Server error: Bukan response JSON. Server mungkin offline atau ada masalah.";
+      console.error('Non-JSON response:', text);
+      return;
+    }
+
     const data = await res.json();
-    if (data.error) return resultBox.innerHTML = "❌ Gagal: " + data.error;
+
+    if (data.error || data.errors) {
+      resultBox.innerHTML = "❌ Gagal: " + (data.error || data.errors || "Unknown Error");
+      return;
+    }
 
     resultBox.innerHTML = `
       ✅ Panel berhasil dibuat!<br/><br/>
-      🌐 Domain: <a href="${data.panel_url}" target="_blank">${data.panel_url}</a><br/>
-      👤 Username: <code>${data.username}</code><br/>
-      🔐 Password: <code>${data.password}</code><br/>
+      🌐 Domain: ${data.panel_url}<br/>
+      👤 Username: ${data.username}<br/>
+      🔐 Password: ${data.password}<br/>
       📧 Email: ${data.email}<br/>
       🆔 Server ID: ${data.server_id}
     `;
@@ -73,98 +88,3 @@ document.getElementById("panelForm").addEventListener("submit", async (e) => {
     resultBox.innerHTML = "❌ Error saat request: " + err.message;
   }
 });
-
-// List Panel
-async function fetchServers() {
-  const container = document.getElementById("serverList");
-  container.innerHTML = "⧗ Memuat daftar server...";
-  try {
-    const res = await fetch("https://solid-hammerhead-petalite.glitch.me/servers");
-    const servers = await res.json();
-    if (!Array.isArray(servers)) return container.innerHTML = "✘ Gagal mengambil data.";
-
-    container.innerHTML = servers.map(srv => `
-      <div class="server-item">
-        <span class="server-name">${srv.attributes.name || 'Tanpa Nama'}</span>
-        <button class="delete-btn" onclick="deleteServer('${srv.attributes.id}')">×</button>
-      </div>
-    `).join('');
-  } catch {
-    container.innerHTML = "✘ Gagal mengambil data server.";
-  }
-}
-
-async function deleteServer(id) {
-  if (!confirm("Yakin hapus server ini?")) return;
-  try {
-    const res = await fetch(`https://solid-hammerhead-petalite.glitch.me/server/${id}`, { method: "DELETE" });
-    const data = await res.json();
-    if (data.success) fetchServers();
-    else alert("✘ Gagal hapus server");
-  } catch {
-    alert("✘ Error saat menghapus server.");
-  }
-}
-document.querySelector(".tab-btn:nth-child(2)").addEventListener("click", fetchServers);
-
-// Create Admin
-document.getElementById("adminForm").addEventListener("submit", async (e) => {
-  e.preventDefault();
-  const username = document.getElementById("adminUsername").value.toLowerCase();
-  const email = document.getElementById("adminEmail").value.toLowerCase();
-  const resultBox = document.getElementById("adminResult");
-
-  resultBox.innerHTML = "⧗ Membuat akun admin...";
-  try {
-    const res = await fetch("https://solid-hammerhead-petalite.glitch.me/create-admin", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ username, email })
-    });
-    const data = await res.json();
-    if (data.error) return resultBox.innerHTML = "✘ Gagal: " + data.error;
-
-    resultBox.innerHTML = `
-      ✅ Admin berhasil dibuat!<br/><br/>
-      👤 Username: <code>${data.username}</code><br/>
-      🔐 Password: <code>${data.password}</code><br/>
-      📧 Email: ${data.email}<br/>
-      🆔 User ID: ${data.user_id}
-    `;
-  } catch (err) {
-    resultBox.innerHTML = "✘ Gagal melakukan request.";
-  }
-});
-
-// List Admin
-async function fetchAdmins() {
-  const container = document.getElementById("adminList");
-  container.innerHTML = "⧗ Memuat daftar admin...";
-  try {
-    const res = await fetch("https://solid-hammerhead-petalite.glitch.me/admins");
-    const admins = await res.json();
-    if (!Array.isArray(admins)) return container.innerHTML = "✘ Gagal mengambil data.";
-
-    container.innerHTML = admins.map(admin => `
-      <div class="server-item">
-        <span class="server-name">${admin.username || 'Tanpa Nama'}</span>
-        <button class="delete-btn" onclick="deleteAdmin('${admin.id}')">×</button>
-      </div>
-    `).join('');
-  } catch {
-    container.innerHTML = "✘ Gagal mengambil data admin.";
-  }
-}
-
-async function deleteAdmin(id) {
-  if (!confirm("Yakin hapus admin ini?")) return;
-  try {
-    const res = await fetch(`https://solid-hammerhead-petalite.glitch.me/admin/${id}`, { method: "DELETE" });
-    const data = await res.json();
-    if (data.success) fetchAdmins();
-    else alert("✘ Gagal hapus admin");
-  } catch {
-    alert("✘ Error saat menghapus admin.");
-  }
-}
-document.querySelector(".tab-btn:nth-child(4)").addEventListener("click", fetchAdmins);
