@@ -6,148 +6,52 @@
   <title>Cpanel Joocode Official</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
   <style>
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Poppins', sans-serif;
-}
-
-body {
-  background: #121212;
-  color: #fff;
-  overflow-x: hidden;
-}
-
-header {
-  display: flex;
-  align-items: center;
-  padding: 20px;
-}
-
-.logo {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-}
-
-.logo img {
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  border: 2px solid #00f0ff;
-}
-
-.logo h1 {
-  font-size: 24px;
-  background: linear-gradient(to right, #00f0ff, #ff00f0);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.main {
-  display: flex;
-  justify-content: space-between;
-  padding: 40px;
-  flex-wrap: wrap;
-}
-
-.left {
-  flex: 1;
-  max-width: 500px;
-}
-
-.left h2 {
-  font-size: 32px;
-  animation: fadeIn 1s ease-in-out;
-}
-
-.left p {
-  margin-top: 10px;
-  font-size: 18px;
-  color: #ccc;
-  animation: fadeIn 2s ease-in-out;
-}
-
-.typing {
-  margin-top: 15px;
-  color: #00f0ff;
-  font-weight: bold;
-  height: 30px;
-}
-
-.right {
-  position: relative;
-  flex: 1;
-  max-width: 400px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.right .layer {
-  position: absolute;
-  width: 90%;
-  height: 90%;
-  border: 2px solid #00f0ff;
-  border-radius: 15px;
-  transform: rotate(5deg);
-  z-index: 0;
-}
-
-.right img {
-  width: 100%;
-  max-width: 320px;
-  border-radius: 15px;
-  z-index: 1;
-  box-shadow: 0 0 20px rgba(0, 240, 255, 0.2);
-}
-
-/* === DASHBOARD === */
-.dashboard-container {
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+    body { background: #121212; color: #fff; overflow-x: hidden; }
+    header { display: flex; align-items: center; padding: 20px; }
+    .logo { display: flex; align-items: center; gap: 15px; }
+    .logo img { width: 60px; height: 60px; border-radius: 50%; border: 2px solid #00f0ff; }
+    .logo h1 {
+      font-size: 24px;
+      background: linear-gradient(to right, #00f0ff, #ff00f0);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .main { display: flex; justify-content: space-between; padding: 40px; flex-wrap: wrap; }
+    .left { flex: 1; max-width: 500px; }
+    .left h2 { font-size: 32px; animation: fadeIn 1s ease-in-out; }
+    .left p { margin-top: 10px; font-size: 18px; color: #ccc; animation: fadeIn 2s ease-in-out; }
+    .typing { margin-top: 15px; color: #00f0ff; font-weight: bold; height: 30px; }
+    .right {
+      position: relative; flex: 1; max-width: 400px;
+      display: flex; justify-content: center; align-items: center;
+    }
+    .right .layer {
+      position: absolute; width: 90%; height: 90%;
+      border: 2px solid #00f0ff; border-radius: 15px;
+      transform: rotate(5deg); z-index: 0;
+    }
+    .right img {
+      width: 100%; max-width: 320px; border-radius: 15px; z-index: 1;
+      box-shadow: 0 0 20px rgba(0, 240, 255, 0.2);
+    }
+    .dashboard-container {
   display: flex;
   flex-wrap: wrap;
   padding: 0 40px;
   gap: 40px;
-  margin-top: 50px;
+  margin-top: 30px;
 }
 
 .tabs {
   flex: 0 0 240px;
   display: flex;
   flex-direction: column;
-  align-items: stretch;
+  gap: 12px;
   background: #1a1a1a;
   padding: 20px;
   border-radius: 15px;
-  box-shadow: 0 0 15px rgba(0, 240, 255, 0.08);
-  margin-top: 30px;
-}
-
-.tabs h3 {
-  font-size: 16px;
-  color: #ccc;
-  margin-bottom: 12px;
-  text-align: left;
-  width: 100%;
-}
-
-.tab-btn {
-  padding: 12px 18px;
-  border: none;
-  border-radius: 10px;
-  background: linear-gradient(135deg, #00f0ff, #8f00ff);
-  color: white;
-  cursor: pointer;
-  font-weight: 600;
-  font-size: 15px;
-  width: 100%;
-  margin-bottom: 10px;
-  transition: all 0.2s ease;
-}
-
-.tab-btn:hover {
-  opacity: 0.9;
+  box-shadow: 0 0 15px rgba(0,240,255,0.08);
 }
 
 .dashboard-content {
@@ -156,120 +60,59 @@ header {
   max-width: 700px;
 }
 
-.section {
-  display: none;
-  background: #1e1e1e;
-  padding: 30px;
-  border-radius: 15px;
-  box-shadow: 0 0 15px rgba(0, 240, 255, 0.2);
-}
-
-.section.active {
-  display: block;
-}
-
-.section h3 {
-  font-size: 18px;
-  margin-bottom: 20px;
-  color: #00f0ff;
-}
-
-/* FORM */
-.form-wrapper {
-  display: flex;
-  justify-content: center;
-}
-
 .section form {
   display: flex;
   flex-direction: column;
   gap: 12px;
-  max-width: 240px;
-  width: 100%;
-  margin-top: 20px;
 }
-
-input, select, button {
-  width: 100%;
-  padding: 12px;
-  border: none;
-  border-radius: 10px;
-  font-size: 14px;
-  background: #2a2a2a;
-  color: #fff;
-}
-
-button[type="submit"] {
-  background: linear-gradient(135deg, #00f0ff, #8f00ff);
-  color: white;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-.server-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 8px 12px;
-  margin: 10px 0;
-  background: #1c1c1c;
-  border-radius: 10px;
-  font-size: 14px;
-}
-
-.delete-btn {
-  background: #ff0040;
-  color: white;
-  width: 24px;
-  height: 24px;
+    .tabs {
+      display: flex; flex-direction: column;
+      align-items: flex-start; margin: 30px 40px;
+    }
+   .tabs h3 {
   font-size: 16px;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  color: #ccc;
+  margin-bottom: 8px;
+  text-align: left;
+  width: 100%;
 }
-
-/* === RESPONSIVE (HP) === */
-@media screen and (max-width: 600px) {
-  .dashboard-container {
-    flex-direction: column;
-    padding: 0 20px;
-  }
-
-  .tabs, .section form {
-    max-width: 100%;
-    width: 100%;
-  }
-
-  .tabs {
-    margin-bottom: 20px;
-  }
-
-  .form-wrapper {
-    justify-content: center;
-  }
-
-  .main {
-    padding: 20px;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-  }
-
-  .left, .right {
-    max-width: 100%;
-  }
-
-  .right .layer {
-    display: none;
-  }
-
-  .right img {
-    max-width: 240px;
-  }
-}
+    .tab-btn {
+      padding: 10px 24px; border: none;
+      border-radius: 8px;
+      background: linear-gradient(135deg, #00f0ff, #8f00ff);
+      color: white; cursor: pointer;
+      font-weight: 600; font-size: 15px;
+      width: 240px; margin-bottom: 10px;
+    }
+    .tab-btn:hover { opacity: 0.9; }
+    .section {
+      display: none;
+      max-width: 700px; margin: auto;
+      background: #1e1e1e; padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 0 15px rgba(0, 240, 255, 0.2);
+    }
+    .section.active { display: block; }
+    input, select, button {
+      width: 100%; padding: 12px; margin-bottom: 15px;
+      border: none; border-radius: 10px; font-size: 14px;
+    }
+    input, select { background: #2a2a2a; color: #fff; }
+    button[type="submit"] {
+      background: linear-gradient(135deg, #00f0ff, #8f00ff);
+      color: white; font-weight: bold; cursor: pointer;
+    }
+    .server-item {
+      display: flex; justify-content: space-between;
+      align-items: center; padding: 8px 12px; margin: 10px 0;
+      background: #1c1c1c; border-radius: 10px; font-size: 14px;
+    }
+    .delete-btn {
+      background: #ff0040; color: white;
+      width: 24px; height: 24px; font-size: 16px;
+      border: none; border-radius: 6px;
+      cursor: pointer; display: flex; align-items: center; justify-content: center;
+    }
   </style>
 </head>
 <body>
@@ -306,32 +149,28 @@ button[type="submit"] {
   <div class="dashboard-content">
 
     <!-- CREATE PANEL -->
-<section id="create" class="section">
-  <h3>✧ Buat Panel Sekarang</h3>
-  <div class="form-wrapper">
-    <form id="panelForm">
-      <select id="size" required>
-        <option value="" disabled selected>Pilih RAM</option>
-        <option value="1gb">1GB</option>
-        <option value="2gb">2GB</option>
-        <option value="3gb">3GB</option>
-        <option value="4gb">4GB</option>
-        <option value="5gb">5GB</option>
-        <option value="6gb">6GB</option>
-        <option value="7gb">7GB</option>
-        <option value="8gb">8GB</option>
-        <option value="9gb">9GB</option>
-        <option value="10gb">10GB</option>
-        <option value="unlimited">Unlimited</option>
-      </select>
-
-      <input type="text" id="username" placeholder="Username Panel" required />
-      <input type="email" id="email" placeholder="Email Panel" required />
-      <button type="submit">Buat Sekarang</button>
-    </form>
-  </div>
-  <div id="result" style="margin-top: 15px; font-size: 14px; color: #ccc;"></div>
-</section>
+    <section id="create" class="section">
+      <h3>✧ Buat Panel Sekarang</h3>
+      <form id="panelForm">
+        <select id="size">
+          <option value="1gb">1GB</option>
+          <option value="2gb">2GB</option>
+          <option value="3gb">3GB</option>
+          <option value="4gb">4GB</option>
+          <option value="5gb">5GB</option>
+          <option value="6gb">6GB</option>
+          <option value="7gb">7GB</option>
+          <option value="8gb">8GB</option>
+          <option value="9gb">9GB</option>
+          <option value="10gb">10GB</option>
+          <option value="unlimited">Unlimited</option>
+        </select>
+        <input type="text" id="username" placeholder="Username" required />
+        <input type="email" id="email" placeholder="Email" required />
+        <button type="submit">Buat Sekarang</button>
+      </form>
+      <div id="result">Result</div>
+    </section>
 
     <!-- LIST PANEL -->
     <section id="list" class="section">
@@ -340,17 +179,15 @@ button[type="submit"] {
     </section>
 
     <!-- CREATE ADMIN -->
-<section id="createAdmin" class="section">
-  <h3>✧ Buat Admin Panel</h3>
-  <div class="form-wrapper">
-    <form id="adminForm">
-      <input type="text" id="adminUsername" placeholder="Username Admin" required />
-      <input type="email" id="adminEmail" placeholder="Email Admin" required />
-      <button type="submit">Buat Admin</button>
-    </form>
-  </div>
-  <div id="adminResult" style="margin-top: 15px; font-size: 14px; color: #ccc;"></div>
-</section>
+    <section id="createAdmin" class="section">
+      <h3>✧ Buat Admin Panel</h3>
+      <form id="adminForm">
+        <input type="text" id="adminUsername" placeholder="Username Admin" required />
+        <input type="email" id="adminEmail" placeholder="Email Admin" required />
+        <button type="submit">Buat Admin</button>
+      </form>
+      <div id="adminResult">Result</div>
+    </section>
 
     <!-- LIST ADMIN -->
     <section id="listAdmin" class="section">
