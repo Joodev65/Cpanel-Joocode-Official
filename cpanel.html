@@ -43,10 +43,23 @@
   margin-top: 30px;
 }
 
+.tabs h3 {
+  font-size: 16px;
+  color: #ccc;
+  margin: 0 0 12px 0;
+  text-align: left;
+  width: 100%; /* ⬅️ Biar lebar sama kayak tombol */
+}
+
+.tabs * {
+  outline: 1px dashed red;
+}
+
 .tabs {
   flex: 0 0 240px;
   display: flex;
   flex-direction: column;
+  align-items: flex-start; /* ⬅️ Biar semua isi kiri */
   gap: 12px;
   background: #1a1a1a;
   padding: 20px;
