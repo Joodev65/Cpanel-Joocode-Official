@@ -409,22 +409,26 @@
 
   // ====== List Admin ======
   async function fetchAdmins() {
-    const container = document.getElementById("adminList");
-    container.innerHTML = "⧗ Memuat daftar admin...";
-    try {
-      const res = await fetch("https://solid-hammerhead-petalite.glitch.me/admins");
-      const admins = await res.json();
-      if (!Array.isArray(admins)) return container.innerHTML = "✘ Gagal mengambil data.";
-      container.innerHTML = admins.map(admin => `
-        <div class="server-item">
-          <span class="server-name">${admin.username || 'Tanpa Nama'} - ${admin.domain || ''}</span>
-          <button class="delete-btn" onclick="deleteAdmin('${admin.id}')">×</button>
-        </div>
-      `).join('');
-    } catch {
-      container.innerHTML = "✘ Error mengambil admin.";
-    }
+  const container = document.getElementById("adminList");
+  container.innerHTML = "⧗ Memuat daftar admin...";
+  try {
+    const res = await fetch("https://solid-hammerhead-petalite.glitch.me/admins");
+    const admins = await res.json();
+    if (!Array.isArray(admins)) return container.innerHTML = "✘ Gagal mengambil data.";
+
+    const filtered = admins.filter(a => a.username && a.username.trim() !== "");
+    if (filtered.length === 0) return container.innerHTML = "⚠️ Tidak ada admin ditemukan.";
+
+    container.innerHTML = filtered.map(admin => `
+      <div class="server-item">
+        <span class="server-name">${admin.username}</span>
+        <button class="delete-btn" onclick="deleteAdmin('${admin.id}')">×</button>
+      </div>
+    `).join('');
+  } catch {
+    container.innerHTML = "✘ Error mengambil admin.";
   }
+}
 
   async function deleteAdmin(id) {
     if (!confirm("Yakin hapus admin ini?")) return;
