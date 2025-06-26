@@ -6,16 +6,202 @@
   <title>Cpanel Joocode Official</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
-    body { background: #121212; color: #fff; overflow-x: hidden; }
-    header { display: flex; align-items: center; padding: 20px; }
-    .logo { display: flex; align-items: center; gap: 15px; }
-    .logo img { width: 60px; height: 60px; border-radius: 50%; border: 2px solid #00f0ff; }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background: #121212;
+      color: #fff;
+      overflow-x: hidden;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .logo img {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      border: 2px solid #00f0ff;
+    }
+
     .logo h1 {
       font-size: 24px;
       background: linear-gradient(to right, #00f0ff, #ff00f0);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
+    }
+
+    .main {
+      display: flex;
+      justify-content: space-between;
+      padding: 40px;
+      flex-wrap: wrap;
+    }
+
+    .left {
+      flex: 1;
+      max-width: 500px;
+    }
+
+    .left h2 {
+      font-size: 32px;
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    .left p {
+      margin-top: 10px;
+      font-size: 18px;
+      color: #ccc;
+      animation: fadeIn 2s ease-in-out;
+    }
+
+    .typing {
+      margin-top: 15px;
+      color: #00f0ff;
+      font-weight: bold;
+      height: 30px;
+    }
+
+    .right {
+      position: relative;
+      flex: 1;
+      max-width: 400px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .right .layer {
+      position: absolute;
+      width: 90%;
+      height: 90%;
+      border: 2px solid #00f0ff;
+      border-radius: 15px;
+      transform: rotate(5deg);
+      z-index: 0;
+    }
+
+    .right img {
+      width: 100%;
+      max-width: 320px;
+      border-radius: 15px;
+      z-index: 1;
+      box-shadow: 0 0 20px rgba(0, 240, 255, 0.2);
+    }
+
+    .tabs {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      margin: 30px 40px;
+    }
+
+    .tabs h3 {
+      font-size: 16px;
+      color: #ccc;
+      margin-bottom: 8px;
+    }
+
+    .tab-btn {
+      padding: 10px 24px;
+      border: none;
+      border-radius: 8px;
+      background: linear-gradient(135deg, #00f0ff, #8f00ff);
+      color: white;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 15px;
+      width: 240px;
+      margin-bottom: 10px;
+    }
+
+    .tab-btn:hover {
+      opacity: 0.9;
+    }
+
+    .section {
+      display: none;
+      max-width: 700px;
+      margin: auto;
+      background: #1e1e1e;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 0 15px rgba(0, 240, 255, 0.2);
+    }
+
+    .section.active {
+      display: block;
+    }
+
+    input,
+    select,
+    button {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 15px;
+      border: none;
+      border-radius: 10px;
+      font-size: 14px;
+    }
+
+    input,
+    select {
+      background: #2a2a2a;
+      color: #fff;
+    }
+
+    button[type="submit"] {
+      background: linear-gradient(135deg, #00f0ff, #8f00ff);
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    #result,
+    #adminResult {
+      margin-top: 20px;
+      background: #2a2a2a;
+      padding: 15px;
+      border-radius: 10px;
+    }
+
+    .server-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 12px;
+      margin: 10px 0;
+      background: #1c1c1c;
+      border-radius: 10px;
+      font-size: 14px;
+    }
+
+    .delete-btn {
+      background: #ff0040;
+      color: white;
+      border: none;
+      width: 24px;
+      height: 24px;
+      font-size: 16px;
+      border-radius: 6px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
   </style>
 </head>
