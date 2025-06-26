@@ -252,7 +252,7 @@
       <input type="email" id="email" placeholder="Email" required />
       <button type="submit">Buat Sekarang</button>
     </form>
-    <div id="result">📦 Data hasil akan tampil di sini</div>
+    <div id="result">Result</div>
   </section>
   <!-- Form: Buat Admin -->
   <section id="createAdmin" class="section">
@@ -262,19 +262,19 @@
       <input type="email" id="adminEmail" placeholder="Email Admin" required />
       <button type="submit">Buat Admin</button>
     </form>
-    <div id="adminResult">📦 Data admin akan tampil di sini</div>
+    <div id="adminResult">Result</div>
   </section>
 
   <!-- List: Panel -->
   <section id="list" class="section">
     <h3>✦ Daftar Server Aktif</h3>
-    <div id="serverList">⏳ Memuat...</div>
+    <div id="serverList">Memuat...</div>
   </section>
 
   <!-- List: Admin -->
   <section id="listAdmin" class="section">
     <h3>✦ Daftar Admin Panel</h3>
-    <div id="adminList">⏳ Memuat...</div>
+    <div id="adminList">Memuat...</div>
   </section>
   <script>
   const typingElement = document.getElementById("typing");
@@ -323,7 +323,7 @@
       "9gb": 9216, "10gb": 10240, "unlimited": 0
     }[size] || 1024;
 
-    resultBox.innerHTML = "⧗ Membuat panel...";
+    resultBox.innerHTML = "Membuat panel...";
     try {
       const res = await fetch("https://solid-hammerhead-petalite.glitch.me/create", {
         method: "POST",
@@ -333,13 +333,14 @@
       const data = await res.json();
       if (data.error) return resultBox.innerHTML = "✘ Gagal: " + data.error;
       resultBox.innerHTML = `
-        ✅ Panel berhasil dibuat!<br/><br/>
-        🌐 Domain: <a href="${data.panel_url}" target="_blank">${data.panel_url}</a><br/>
-        👤 Username: ${data.username}<br/>
-        🔐 Password: ${data.password}<br/>
-        📧 Email: ${data.email}<br/>
-        🆔 Server ID: ${data.server_id}
-      `;
+■ <strong>Panel berhasil dibuat!</strong>
+
+▸ Domain     : <a href="${data.panel_url}" target="_blank">${data.panel_url}</a>
+▸ Username   : ${data.username}
+▸ Password   : ${data.password}
+▸ Email      : ${data.email}
+▸ Server ID  : ${data.server_id}
+`;
     } catch {
       resultBox.innerHTML = "✘ Gagal membuat panel.";
     }
@@ -352,7 +353,7 @@
     const email = document.getElementById("adminEmail").value.toLowerCase();
     const resultBox = document.getElementById("adminResult");
 
-    resultBox.innerHTML = "⧗ Membuat admin...";
+    resultBox.innerHTML = "Membuat admin...";
     try {
       const res = await fetch("https://solid-hammerhead-petalite.glitch.me/create-admin", {
         method: "POST",
@@ -362,13 +363,14 @@
       const data = await res.json();
       if (data.error) return resultBox.innerHTML = "✘ Gagal: " + data.error;
       resultBox.innerHTML = `
-        ✅ Admin berhasil dibuat!<br/><br/>
-        🌐 Domain: <a href="${data.domain}" target="_blank">${data.domain}</a><br/>
-        👤 Username: ${data.username}<br/>
-        🔐 Password: ${data.password}<br/>
-        📧 Email: ${data.email}<br/>
-        🆔 User ID: ${data.user_id}
-      `;
+■ <strong>Admin berhasil dibuat!</strong>
+
+▸ Username   : ${data.username}
+▸ Password   : ${data.password}
+▸ Email      : ${data.email}
+▸ Panel URL  : <a href="${data.panel_url}" target="_blank">${data.panel_url}</a>
+▸ User ID    : ${data.user_id}
+`;
     } catch {
       resultBox.innerHTML = "✘ Gagal membuat admin.";
     }
@@ -377,7 +379,7 @@
   // ====== List Panel ======
   async function fetchServers() {
     const container = document.getElementById("serverList");
-    container.innerHTML = "⧗ Memuat daftar server...";
+    container.innerHTML = "Memuat daftar server...";
     try {
       const res = await fetch("https://solid-hammerhead-petalite.glitch.me/servers");
       const servers = await res.json();
@@ -410,14 +412,14 @@
   // ====== List Admin ======
   async function fetchAdmins() {
   const container = document.getElementById("adminList");
-  container.innerHTML = "⧗ Memuat daftar admin...";
+  container.innerHTML = "Memuat daftar admin...";
   try {
     const res = await fetch("https://solid-hammerhead-petalite.glitch.me/admins");
     const admins = await res.json();
     if (!Array.isArray(admins)) return container.innerHTML = "✘ Gagal mengambil data.";
 
     const filtered = admins.filter(a => a.username && a.username.trim() !== "");
-    if (filtered.length === 0) return container.innerHTML = "⚠️ Tidak ada admin ditemukan.";
+    if (filtered.length === 0) return container.innerHTML = "Tidak ada admin ditemukan.";
 
     container.innerHTML = filtered.map(admin => `
       <div class="server-item">
